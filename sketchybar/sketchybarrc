@@ -1,0 +1,116 @@
+#!/bin/sh
+
+CONFIG_DIR="$HOME/.config/sketchybar"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+# Palette
+xBAR_COLOR=0xb80b0d10
+ITEM_COLOR=0x6616191f
+BORDER_COLOR=0x443b4252
+
+TEXT_COLOR=0xffd8dee9
+MUTED_COLOR=0xff687184
+ACCENT_COLOR=0xff88c0d0
+SECONDARY_COLOR=0xffb48ead
+
+FONT="JetBrainsMono Nerd Font"
+
+# Bar
+sketchybar --bar \
+  position=top \
+  height=36 \
+  margin=8 \
+  y_offset=4 \
+  corner_radius=11 \
+  color=$BAR_COLOR \
+  blur_radius=28 \
+  border_width=1 \
+  border_color=$BORDER_COLOR \
+  padding_left=8 \
+  padding_right=8 \
+  sticky=on \
+  topmost=on \
+  font_smoothing=on
+
+# Defaults
+sketchybar --default \
+  icon.font="$FONT:Bold:13.0" \
+  icon.color=$TEXT_COLOR \
+  icon.padding_left=7 \
+  icon.padding_right=7 \
+  label.font="$FONT:Medium:12.0" \
+  label.color=$TEXT_COLOR \
+  label.padding_left=7 \
+  label.padding_right=7 \
+  background.height=25 \
+  background.corner_radius=8
+
+# macOS icon
+sketchybar --add item logo left \
+  --set logo \
+    icon="" \
+    icon.color=$ACCENT_COLOR \
+    icon.padding_left=8 \
+    icon.padding_right=10 \
+    label.drawing=off
+
+# Native Mission Control spaces
+for SID in 1 2 3 4 5; do
+  sketchybar --add space "space.$SID" left \
+    --set "space.$SID" \
+      space=$SID \
+      icon="$SID" \
+      icon.color=$MUTED_COLOR \
+      icon.highlight_color=$ACCENT_COLOR \
+      label.drawing=off \
+      background.drawing=off
+done
+
+sketchybar --add bracket spaces '/space\..*/' \
+  --set spaces \
+    background.drawing=on \
+    background.color=$ITEM_COLOR \
+    background.corner_radius=8 \
+    background.height=25
+
+# Current application
+sketchybar --add item front_app left \
+  --set front_app \
+    icon.drawing=off \
+    label.max_chars=24 \
+    label.color=$TEXT_COLOR \
+    script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched
+
+# Clock
+sketchybar --add item clock right \
+  --set clock \
+    icon="" \
+    icon.color=$SECONDARY_COLOR \
+    update_freq=10 \
+    script="$PLUGIN_DIR/clock.sh"
+
+sketchybar --add item bluetooth right \
+  --set bluetooth \
+    icon="󰂯" \
+    label="On" \
+    update_freq=10 \
+    script="$PLUGIN_DIR/bluetooth.sh" \
+  --subscribe bluetooth mouse.clicked system_woke
+
+# Battery
+sketchybar --add item battery right \
+  --set battery \
+    icon.color=$ACCENT_COLOR \
+    update_freq=30 \
+    script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery power_source_change system_woke
+
+sketchybar --add bracket status bluetooth battery clock \
+  --set status \
+    background.drawing=on \
+    background.color=$ITEM_COLOR \
+    background.corner_radius=8 \
+    background.height=25
+
+sketchybar --update
