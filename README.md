@@ -4,11 +4,7 @@ A personal macOS environment inspired by Arch Linux and Hyprland, while keeping 
 
 The setup combines a transparent Ghostty terminal, a compact Starship prompt, a custom SketchyBar, Zsh quality-of-life plugins, and a Caps Lock–based Super Key for launching applications.
 
-<!--
-Add the final screenshot as assets/preview.png, then uncomment this line:
-
 ![macOS dotfiles preview](assets/preview.png)
--->
 
 ## Setup
 
