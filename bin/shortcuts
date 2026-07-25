@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+BOLD=$'\e[1m'
+BLUE=$'\e[38;2;136;192;208m'
+PURPLE=$'\e[38;2;180;142;173m'
+MUTED=$'\e[38;2;104;113;132m'
+RESET=$'\e[0m'
+
+section() {
+  printf "\n${BOLD}${BLUE}%s${RESET}\n" "$1"
+}
+
+shortcut() {
+  printf "  ${PURPLE}%-20s${RESET} %s\n" "$1" "$2"
+}
+
+printf "\n${BOLD}macOS dotfiles — shortcut reference${RESET}\n"
+
+section "Super Key · Caps Lock"
+
+shortcut "Caps"            "Escape quando pressionado sozinho"
+shortcut "Caps + Enter"    "Abrir Ghostty"
+shortcut "Caps + R"        "Abrir RustRover"
+shortcut "Caps + C"        "Abrir Claude"
+shortcut "Caps + B"        "Abrir navegador"
+shortcut "Caps + F"        "Abrir Finder"
+shortcut "Caps + ,"        "Abrir Ajustes do Sistema"
+shortcut "Caps + Q"        "Fechar janela ou aba atual"
+
+section "Ghostty"
+
+shortcut "Cmd + Shift + R" "Recarregar configuração"
+shortcut "Cmd + Shift + O" "Alternar transparência"
+shortcut "Tab"             "Completar comando ou caminho"
+shortcut "→"               "Aceitar autosuggestion"
+shortcut "↑ / ↓"           "Navegar pelo histórico"
+shortcut "Ctrl + R"        "Pesquisar no histórico"
+shortcut "Ctrl + C"        "Interromper comando atual"
+shortcut "Ctrl + L"        "Limpar a tela"
+
+section "SketchyBar"
+
+shortcut "Bluetooth · click"       "Ligar ou desligar Bluetooth"
+shortcut "Bluetooth · right click" "Abrir configurações de Bluetooth"
+
+section "Shell aliases"
+
+ZSHRC="$HOME/Documents/macos-dotfiles/shell/zshrc"
+
+if [[ -f "$ZSHRC" ]]; then
+  grep '^[[:space:]]*alias ' "$ZSHRC" |
+    sed -E 's/^[[:space:]]*alias /  /' |
+    sed -E 's/=/  →  /'
+else
+  printf "  ${MUTED}Arquivo de aliases não encontrado.${RESET}\n"
+fi
+
+printf "\n${MUTED}Use: shortcuts ou keys${RESET}\n\n"

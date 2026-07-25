@@ -75,3 +75,8 @@ alias cbr="cargo build --release"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+# Dotfiles commands
+export PATH="$HOME/Documents/macos-dotfiles/bin:$PATH"
+
+alias keys="shortcuts"

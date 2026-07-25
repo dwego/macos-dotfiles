@@ -54,3 +54,8 @@ palette = 15=#eceff4
 
 keybind = cmd+shift+r=reload_config
 keybind = cmd+shift+o=toggle_background_opacity
+
+# Start new windows in fullscreen
+
+# Start maximized, preserving macOS bars
+maximize = true
