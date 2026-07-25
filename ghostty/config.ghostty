@@ -1,0 +1,56 @@
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 16
+
+window-width = 125
+window-height = 38
+
+background = #0b0d10
+foreground = #d8dee9
+
+background-opacity = 0.66
+background-opacity-cells = true
+background-blur = 14
+
+cursor-color = #88c0d0
+cursor-text = #0b0d10
+cursor-style = block
+cursor-style-blink = false
+
+selection-background = #29394a
+selection-foreground = #eceff4
+
+window-padding-x = 16
+window-padding-y = 14
+window-padding-balance = true
+window-padding-color = background
+
+macos-titlebar-style = hidden
+macos-option-as-alt = true
+
+window-inherit-working-directory = true
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
+
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title,path
+
+palette = 0=#16191f
+palette = 1=#bf616a
+palette = 2=#8fbcbb
+palette = 3=#b8a88a
+palette = 4=#81a1c1
+palette = 5=#b48ead
+palette = 6=#88c0d0
+palette = 7=#d8dee9
+
+palette = 8=#4c566a
+palette = 9=#d06f79
+palette = 10=#9fc6c5
+palette = 11=#c7b99d
+palette = 12=#8fafd0
+palette = 13=#c19ac4
+palette = 14=#9ad1dd
+palette = 15=#eceff4
+
+keybind = cmd+shift+r=reload_config
+keybind = cmd+shift+o=toggle_background_opacity

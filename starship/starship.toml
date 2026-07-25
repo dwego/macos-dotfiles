@@ -1,0 +1,59 @@
+add_newline = false
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$rust\
+$c\
+$zig\
+$package\
+$cmd_duration\
+$line_break\
+$character"""
+
+[directory]
+style = "bold #88c0d0"
+format = "[$path]($style) "
+truncation_length = 4
+truncate_to_repo = false
+read_only = " "
+
+[git_branch]
+symbol = " "
+style = "bold #b48ead"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "#bf616a"
+format = "([$all_status$ahead_behind]($style) )"
+
+[rust]
+symbol = " "
+style = "bold #81a1c1"
+format = "via [$symbol($version)]($style) "
+
+[c]
+symbol = " "
+style = "bold #88c0d0"
+format = "via [$symbol($version)]($style) "
+
+[zig]
+symbol = " "
+style = "bold #b48ead"
+format = "via [$symbol($version)]($style) "
+
+[package]
+symbol = "󰏗 "
+style = "#d8dee9"
+format = "[$symbol$version]($style) "
+
+[cmd_duration]
+min_time = 500
+style = "#4c566a"
+format = "took [$duration]($style) "
+
+[character]
+success_symbol = "[❯](bold #88c0d0)"
+error_symbol = "[❯](bold #bf616a)"
+vimcmd_symbol = "[❮](bold #b48ead)"
